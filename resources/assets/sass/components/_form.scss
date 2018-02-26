@@ -1,0 +1,7 @@
+.form-control {
+  @apply .bg-grey-lighter .w-full .py-3 .px-4 .border-grey-lighter;
+}
+
+.form-label {
+  @apply .mb-3 .block .text-xs .uppercase .tracking-wide;
+}

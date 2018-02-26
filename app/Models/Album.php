@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Album extends Model
+{
+    /**
+     * no guarded fields
+     *
+     * @var array
+     */
+    protected $guarded = [];
+}

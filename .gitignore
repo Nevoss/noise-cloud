@@ -1,0 +1,16 @@
+/node_modules
+/public/hot
+/public/storage/*
+/storage/*.key
+/vendor
+/.idea
+npm-debug.log
+.env
+.phpstorm.meta.php
+_ide_helper_models.php
+_ide_helper.php
+/public/js
+/public/fonts
+/public/store
+/public/images
+/public/css

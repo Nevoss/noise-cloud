@@ -1,0 +1,7 @@
+a {
+  @apply .text-black .no-underline;
+
+  &:active, &:focus, &:visited, &:hover {
+    @apply .text-black .no-underline;
+  }
+}

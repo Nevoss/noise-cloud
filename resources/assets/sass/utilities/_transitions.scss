@@ -1,0 +1,19 @@
+.trans {
+  transition: all .25s;
+}
+
+.trans-slow {
+  transition-duration: .5s;
+}
+
+.trans-slower {
+  transition-duration: .75s;
+}
+
+.trans-fast {
+  transition-duration: .15s;
+}
+
+.trans-faster {
+  transition-duration: .075s;
+}

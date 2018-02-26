@@ -1,0 +1,23 @@
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Crimson+Text:400,600,700|Open+Sans:300,400,400i,600,700");
+@import url("https://use.fontawesome.com/releases/v5.0.6/css/all.css");
+@import './icons';
+
+// Variables
+@import "./variables";
+
+// Tail wind starter props
+@tailwind preflight;
+
+// adding some base configuration to elements
+@import "base";
+
+// Custom Utilities
+@import "./utilities/all";
+
+// Custom Components
+@import "./components/all";
+
+// All the utilities classes
+@tailwind utilities;

@@ -1,0 +1,25 @@
+.navbar {
+  height: $navbar-height;
+}
+
+.sidebar {
+  height: calc(100vh - #{$navbar-height});
+}
+
+.mainContainer {
+  padding-top: $navbar-height;
+}
+
+.uploadingProcess {
+  transition: 0.4s all;
+  visibility: hidden;
+  transform: translateY(200px);
+  opacity: 0.3;
+
+  &.active {
+    visibility: visible;
+    transform: translateY(0px);
+    opacity: 1;
+  }
+
+}

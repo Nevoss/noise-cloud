@@ -1,0 +1,19 @@
+.btn {
+  @apply .mt-2 .px-8 .py-3 .trans;
+}
+
+.btn-red {
+  @apply .bg-red-lighter .text-white;
+
+  &:hover {
+    @apply .bg-red-light;
+  }
+
+  &:disabled {
+    @apply .bg-red-lighter .cursor-not-allowed;
+  }
+}
+
+.btn-link {
+  @apply .no-underline .text-grey-dark;
+}
