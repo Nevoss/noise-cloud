@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { SONGS_UPLOADER_PUSH_TO_QUEUE, SONGS_UPLOADER_UPLOAD_DONE, SONGS_UPLOADER_UPLOAD_STARTED, SONGS_UPLOADER_SHOW_PROCESS_BOX } from './constants'
 import { mapUploadingFiles } from "./utilities"
 
@@ -17,26 +18,29 @@ export const pushToQueueAction = data => {
 /**
  * File upload succeeded
  *
- * @param uploadFileId
+ * @param uploadedFile
  * @returns {{type, payload: *}}
  */
-export const uploadDoneAction = uploadFileId => {
+export const uploadDoneAction = uploadedFile => {
+
+    uploadedFile.uploaded = true
+
     return {
         type: SONGS_UPLOADER_UPLOAD_DONE,
-        payload: uploadFileId
+        payload: uploadedFile
     }
 }
 
 /**
  * File upload started
  *
- * @param uploadFileId
+ * @param uploadedFile
  * @returns {{type, payload: *}}
  */
-export const uploadStartedAction = uploadFileId => {
+export const uploadStartedAction = uploadedFile => {
     return {
         type: SONGS_UPLOADER_UPLOAD_STARTED,
-        payload: uploadFileId
+        payload: uploadedFile
     }
 }
 

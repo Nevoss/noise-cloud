@@ -209,7 +209,7 @@ module.exports = {
       'sans-serif',
     ],
     'serif': [
-      '"Crimson Text"',
+      '"Slabo 27px"',
       'Constantia',
       'Lucida Bright',
       'Lucidabright',

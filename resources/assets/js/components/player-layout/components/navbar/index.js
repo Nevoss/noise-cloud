@@ -52,11 +52,11 @@ class Navbar extends Component {
                                 style={{ top: 75, width: 230 }}
                             >
                                 <li className="p-4 px-6 rounded">
-                                    <i className="fas fa-user text-grey mr-3 text-sm"></i>
+                                    <i className="icon-user2 text-grey-light mr-3"></i>
                                     Profile
                                 </li>
                                 <li className="p-4 px-6 hover:bg-grey-lightest cursor-pointer rounded" onClick={this.props.logoutAction}>
-                                    <i className="fas fa-sign-out-alt text-grey mr-3 text-sm"></i>
+                                    <i className="icon-log-out text-grey-light mr-3"></i>
                                     Logout
                                 </li>
                             </ul>
