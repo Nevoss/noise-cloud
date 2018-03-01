@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import { SONGS_UPLOADER_PUSH_TO_QUEUE, SONGS_UPLOADER_UPLOAD_DONE, SONGS_UPLOADER_UPLOAD_STARTED, SONGS_UPLOADER_SHOW_PROCESS_BOX } from './constants'
 import { mapUploadingFiles } from "./utilities"
+import api from '../../api'
 
 /**
  * adding id to files and push the the queue
@@ -22,9 +23,6 @@ export const pushToQueueAction = data => {
  * @returns {{type, payload: *}}
  */
 export const uploadDoneAction = uploadedFile => {
-
-    uploadedFile.uploaded = true
-
     return {
         type: SONGS_UPLOADER_UPLOAD_DONE,
         payload: uploadedFile
@@ -64,19 +62,31 @@ export const showProcessBox = open => {
  */
 export const recursiveUploaderAction = () => {
     return (dispatch, getState) => {
-        const { songsUploader: { queue } } = getState()
+        const { songsUploader: { queue }, auth: { token } } = getState()
 
         if (queue.length <= 0) {
             return
         }
 
         let fileToUpload =  _.head(queue)
+
         dispatch(uploadStartedAction(fileToUpload))
 
-        setTimeout(() => {
-            dispatch(uploadDoneAction(fileToUpload))
-            dispatch(recursiveUploaderAction())
-        }, 5000)
+        api.songFiles.upload(fileToUpload, token)
+            .then((response) => {
+                console.log(response)
+            })
+            .catch(({ response }) => {
+                console.log(response)
+            
+                fileToUpload.error = response.data.errors.file[0]
+            })
+            .then(() => {
+                fileToUpload.uploaded = true
+
+                dispatch(uploadDoneAction(fileToUpload))
+                dispatch(recursiveUploaderAction())
+            })
     }
 }
 

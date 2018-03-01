@@ -26,7 +26,7 @@ class SongFilesController extends Controller
     public function store()
     {
         request()->validate([
-            'file' => 'required|file|mimetypes:audio/mpeg,audio/x-wav,audio/mp4'
+            'file' => 'required|file|mimetypes:audio/mpeg,audio/x-wav,audio/mp4,audio/x-m4a'
         ]);
         
         /** @var User $user */

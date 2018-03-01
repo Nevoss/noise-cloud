@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { setToken } from "./utilities/index";
 
 // Register
 const register = (params) => {
@@ -12,20 +13,12 @@ const login = (params) => {
 
 // logout
 const logout = (token) => {
-    return axios.get(window.route('auth.logout'), {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    });
+    return axios.get(window.route('auth.logout'), setToken(token));
 }
 
 // me
 const me = (token) => {
-    return axios.get(window.route('auth.me'), {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    })
+    return axios.get(window.route('auth.me'), setToken(token))
 }
 
 export default {

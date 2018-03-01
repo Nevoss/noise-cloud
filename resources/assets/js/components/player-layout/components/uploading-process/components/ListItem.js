@@ -31,15 +31,28 @@ class ListItem extends Component {
         }
     }
 
+    renderError() {
+        if (!this.props.file.error) {
+             return null
+        }
+
+        return (
+            <div className="absolute pin w-full h-full bg-white text-xs text-red-light flex items-center px-4 trans-fast invisible opacity-0 group-hover:opacity-100 group-hover:visible">
+                * {this.props.file.error}
+            </div>
+        )
+    }
+
     render() {
         return (
-            <li className="p-4 flex items-center justify-between">
+            <li className="group p-4 flex items-center justify-between relative">
                 <span>
                     {this.props.file.shortName}
                 </span>
                 <span>
                     {this.renderFileState()}
                 </span>
+                {this.renderError()}
             </li>
         )
     }

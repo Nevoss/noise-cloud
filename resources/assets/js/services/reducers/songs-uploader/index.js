@@ -7,6 +7,13 @@ import {
 } from '../../actions/songs-uploader/constants'
 import { createReducer } from "../utilities"
 
+/**
+ * show or not show process box
+ *
+ * @param state
+ * @param action
+ * @returns {{showProcessBox}}
+ */
 const setShowProcessBox = (state, action) => {
     return {
         ...state,
@@ -14,6 +21,13 @@ const setShowProcessBox = (state, action) => {
     }
 }
 
+/**
+ * push files to queue
+ *
+ * @param state
+ * @param action
+ * @returns {{queue: [null,null]}}
+ */
 const pushToQueue = (state, action) => {
     const { queue, ...rest } = state;
 
@@ -23,6 +37,13 @@ const pushToQueue = (state, action) => {
     }
 }
 
+/**
+ * set uploading file
+ *
+ * @param state
+ * @param action
+ * @returns {{showProcessBox: boolean, uploading}}
+ */
 const setUploadingFile = (state, action) => {
     return {
         ...state,
@@ -31,6 +52,13 @@ const setUploadingFile = (state, action) => {
     }
 }
 
+/**
+ * sey uploaded file done
+ *
+ * @param state
+ * @param action
+ * @returns {{uploading: null, done: [null,null], queue: [null]}}
+ */
 const setUploadDone = (state, action) => {
 
     let { queue, done, ...rest } = state
