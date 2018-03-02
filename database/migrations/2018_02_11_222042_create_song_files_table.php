@@ -18,6 +18,7 @@ class CreateSongFilesTable extends Migration
             $table->string('original_name');
             $table->string('path');
             $table->integer('process_status')->default(0);
+            $table->longText('meta')->nullable();
             $table->integer('song_id')->unsigend()->nullable();
             $table->integer('user_id')->unsigend();
             $table->timestamps();

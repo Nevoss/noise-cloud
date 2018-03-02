@@ -59,7 +59,7 @@ class UploaderComponent extends Component {
                 >
                     <span
                         className="
-                            h-full w-full block flex items-center justify-center flex-col border border-dashed border-grey-light text-grey-darker text-sm uppercase cursor-pointer rounded trans hover:bg-white hover:shadow
+                            h-full w-full block flex items-center justify-center flex-col border border-dashed border-grey-light text-grey-darker text-sm uppercase cursor-pointer rounded trans hover:bg-white hover:shadow hover:border-transparent
                         ">
                         Upload a Song.
                         <i className="icon-upload-cloud block text-lg mt-2 text-grey"></i>

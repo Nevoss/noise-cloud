@@ -4,12 +4,26 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class SongFile extends Model
 {
     const PROCESS_STATUS_NONE = 0;
-    const PROCESS_STATUS_WORKING = 1;
-    const PROCESS_STATUS_DONE = 2;
+    const PROCESS_STATUS_FETCH_META = 1;
+    const PROCESS_STATUS_FETCH_SONG_DATA = 2;
+    const PROCESS_STATUS_DONE = 3;
+    
+    /**
+     * Available process status options
+     *
+     * @var array
+     */
+    public static $availableStatuses = [
+        self::PROCESS_STATUS_NONE,
+        self::PROCESS_STATUS_FETCH_META,
+        self::PROCESS_STATUS_FETCH_SONG_DATA,
+        self::PROCESS_STATUS_DONE,
+    ];
     
     /**
      * no guarded fields
@@ -17,6 +31,54 @@ class SongFile extends Model
      * @var array
      */
     protected $guarded = [];
+    
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'meta' => 'array',
+    ];
+    
+    /**
+     * get the song file public path
+     *
+     * @return string
+     */
+    public function getPublicPathAttribute()
+    {
+        return Storage::disk('songs')->url(
+            $this->attributes['path']
+        );
+    }
+    
+    /**
+     * get the full system path
+     *
+     * @return string
+     */
+    public function getFullPathAttribute()
+    {
+        return Storage::disk('songs')->path(
+            $this->attributes['path']
+        );
+    }
+    
+    /**
+     * change and save process status right away
+     *
+     * @param $status
+     */
+    public function changeStatus($status)
+    {
+        if (!in_array($status, self::$availableStatuses, false)) {
+            return;
+        }
+        
+        $this->process_status = $status;
+        $this->save();
+    }
     
     /**
      * generate Song file path
