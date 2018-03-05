@@ -16,6 +16,7 @@ class CreateSongFilesTable extends Migration
         Schema::create('song_files', function (Blueprint $table) {
             $table->increments('id');
             $table->string('original_name');
+            $table->string('file_name');
             $table->string('path');
             $table->integer('process_status')->default(0);
             $table->longText('meta')->nullable();

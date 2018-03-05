@@ -12,4 +12,14 @@ class Song extends Model
      * @var array
      */
     protected $guarded = [];
+    
+    /**
+     * relation between song and artist
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function artist()
+    {
+        return $this->belongsTo(Artist::class);
+    }
 }

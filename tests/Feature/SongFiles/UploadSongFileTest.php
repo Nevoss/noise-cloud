@@ -36,6 +36,7 @@ class UploadSongFileTest extends TestCase
         
         $this->assertDatabaseHas('song_files', [
             'original_name' => 'song.mp3',
+            'file_name' => $file->hashName(),
             'process_status' => 0,
             'user_id' => $user->id,
         ]);

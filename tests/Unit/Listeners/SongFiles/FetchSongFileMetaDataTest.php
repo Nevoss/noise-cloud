@@ -5,7 +5,6 @@ use App\Events\SongFileUploadedEvent;
 use App\Listeners\SongFileUploaded\FetchSongFileMetaDataListener;
 use App\Models\SongFile;
 use App\Models\User;
-use Illuminate\Support\Facades\Storage;
 
 class FetchSongFileMetaDataTest extends TestCase
 {
@@ -14,21 +13,7 @@ class FetchSongFileMetaDataTest extends TestCase
     {
         $user = create(User::class);
         
-        Storage::fake('songs');
-        
-        $path = SongFile::generateTempPath($user, 'somehash.m4a');
-        
-        Storage::disk('songs')->put(
-            $path,
-            Storage::disk('tests')->get('songs/one_of_us-eatliz.m4a')
-        );
-        
-        /** @var SongFile $songFile */
-        $songFile = create(SongFile::class, [
-            'path' => $path,
-            'original_name' => 'one_of_us-eatliz.m4a',
-            'user_id' => $user->id
-        ]);
+        $songFile = $this->createFakeSongFile($user);
         
         app()->make(FetchSongFileMetaDataListener::class)->handle(
             new SongFileUploadedEvent($songFile)

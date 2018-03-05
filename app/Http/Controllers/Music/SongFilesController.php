@@ -39,6 +39,7 @@ class SongFilesController extends Controller
         
         $songFile = $user->songFiles()->create([
             'original_name' => $file->getClientOriginalName(),
+            'file_name' => $file->hashName(),
             'path' => $path,
         ]);
     

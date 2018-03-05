@@ -66,6 +66,26 @@ class SongFile extends Model
     }
     
     /**
+     * relation between SongFile and User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
+    /**
+     * relation between SongFile and Song
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function song()
+    {
+        return $this->belongsTo(Song::class);
+    }
+    
+    /**
      * change and save process status right away
      *
      * @param $status

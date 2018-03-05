@@ -5,14 +5,11 @@ namespace App\Listeners\SongFileUploaded;
 use getID3;
 use App\Events\SongFileUploadedEvent;
 use App\Models\SongFile;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Storage;
 
 class FetchSongFileMetaDataListener implements ShouldQueue
 {
-    use InteractsWithQueue;
-    
     /**
      * @var getID3
      */

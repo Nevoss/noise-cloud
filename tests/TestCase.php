@@ -2,9 +2,11 @@
 
 namespace Tests;
 
+use App\Models\SongFile;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Facades\Storage;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 abstract class TestCase extends BaseTestCase
@@ -79,5 +81,32 @@ abstract class TestCase extends BaseTestCase
     protected function getUserJwtToken(User $user = null)
     {
         return JWTAuth::fromUser($user ?: create(User::class));
+    }
+    
+    /**
+     * take a existing song and create a SongFile model from it
+     *
+     * @param User|null $user
+     * @param array $overwriteParams
+     * @return SongFile
+     */
+    protected function createFakeSongFile(User $user = null, array $overwriteParams = [])
+    {
+        $user = $user ?: create(User::class);
+        
+        Storage::fake('songs');
+    
+        $path = SongFile::generateTempPath($user, 'somehash.m4a');
+    
+        Storage::disk('songs')->put(
+            $path,
+            Storage::disk('tests')->get('songs/one_of_us-eatliz.m4a')
+        );
+    
+        return create(SongFile::class, array_merge([
+            'path' => $path,
+            'original_name' => 'one_of_us-eatliz.m4a',
+            'user_id' => $user->id
+        ], $overwriteParams));
     }
 }
