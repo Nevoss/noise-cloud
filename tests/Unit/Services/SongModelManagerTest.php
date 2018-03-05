@@ -42,7 +42,7 @@ class SongModelManagerTest extends TestCase
             'artist' => 'Eatliz',
         ]);
         
-        $this->assertInstanceOf($songFromManager, Song::class);
+        $this->assertInstanceOf(Song::class, $songFromManager);
         
         $this->assertDatabaseHas('songs', [
             'name' => 'One Of Us',

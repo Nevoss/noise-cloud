@@ -35,6 +35,16 @@ class SongResponse
     public $albumImage;
     
     /**
+     * check if the response has base data
+     *
+     * @return bool
+     */
+    public function isEmpty()
+    {
+        return !$this->title || !$this->artist;
+    }
+    
+    /**
      * create SongResponse from data that given
      *
      * @param array $data

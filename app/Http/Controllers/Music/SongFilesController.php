@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Music;
 
 use App\Events\SongFileUploadedEvent;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\SongFileResource;
 use App\Models\SongFile;
 use App\Models\User;
 use Illuminate\Http\File;
@@ -16,6 +17,18 @@ class SongFilesController extends Controller
     public function __construct()
     {
         $this->middleware('jwt.auth');
+    }
+    
+    /**
+     * Get all user songFiles
+     *
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function index()
+    {
+        $songFiles = auth()->user()->songFiles;
+        
+        return SongFileResource::collection($songFiles);
     }
     
     /**

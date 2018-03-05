@@ -11,7 +11,7 @@ $factory->define(SongFile::class, function (Faker $faker) {
         'path' => 'path/to/file/' . $fileName,
         'process_status' => SongFile::PROCESS_STATUS_NONE,
         'user_id' => function () {
-            factory(User::class)->create()->id;
+            return factory(User::class)->create()->id;
         }
     ];
 });

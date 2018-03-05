@@ -98,7 +98,7 @@ class SongModelManager implements SongModelManagerInterface
             $this->searchOptions['artist']
         );
         
-        if (!$songResponse) {
+        if ($songResponse->isEmpty()) {
             return null;
         }
         
@@ -106,15 +106,19 @@ class SongModelManager implements SongModelManagerInterface
             'name' => $songResponse->artist
         ]);
         
-        $album = Album::firstOrCreate([
-            'name' => $songResponse->album,
-            'artist_id' => $artist->id,
-        ]);
+        $album = null;
+        
+        if ($songResponse->album) {
+            $album = Album::firstOrCreate([
+                'name' => $songResponse->album,
+                'artist_id' => $artist->id,
+            ]);
+        }
         
         return Song::create([
             'name' => $songResponse->title,
             'artist_id' => $artist->id,
-            'album_id' => $album->id,
+            'album_id' => $album ? $album->id : null,
         ]);
     }
 }
