@@ -114,7 +114,7 @@ class SongModelManager implements SongModelManagerInterface
                 'artist_id' => $artist->id,
             ]);
             
-            if ($songResponse->albumImage) {
+            if ($album && $songResponse->albumImage && !$album->getFirstMedia()) {
                 $album->addMediaFromUrl($songResponse->albumImage)->toMediaCollection();;
             }
         }

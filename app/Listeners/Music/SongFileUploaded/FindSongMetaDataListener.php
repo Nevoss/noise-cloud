@@ -21,8 +21,8 @@ class FindSongMetaDataListener
     public function handle(SongFileUploadedEvent $event)
     {
         ReadId3FromFile::withChain([
-            app()->make(AssociateSongFileWithSongModel::class),
-            app()->make(MoveFileToPermanentPath::class),
+            new AssociateSongFileWithSongModel($event->songFile),
+            new MoveFileToPermanentPath($event->songFile),
         ])->dispatch($event->songFile);
     }
 }
