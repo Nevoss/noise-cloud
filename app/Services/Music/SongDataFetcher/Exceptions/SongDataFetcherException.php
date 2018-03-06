@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\SongDataFetcher\Exceptions;
+namespace App\Services\Music\SongDataFetcher\Exceptions;
 
 use Exception;
 

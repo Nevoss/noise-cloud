@@ -4,7 +4,8 @@ namespace Tests;
 use App\Models\Album;
 use App\Models\Artist;
 use App\Models\Song;
-use App\Services\SongModelManager\SongModelManager;
+use App\Services\Music\SongModelManager\SongModelManager;
+use Illuminate\Support\Facades\Storage;
 
 class SongModelManagerTest extends TestCase
 {
@@ -36,6 +37,8 @@ class SongModelManagerTest extends TestCase
     /** @test */
     public function it_create_song_model_base_on_the_options_fetch_from_api()
     {
+        Storage::fake('media');
+        
         $songModelManager = app()->make(SongModelManager::class);
         $songFromManager = $songModelManager->firstOrCreate([
             'title' => 'One Of Us',
@@ -55,6 +58,8 @@ class SongModelManagerTest extends TestCase
         $this->assertDatabaseHas('albums', [
             'name' => 'All Of It',
         ]);
+        
+        $this->assertNotEmpty(Album::find(1)->getFirstMediaUrl());
     }
     
     /** @test */

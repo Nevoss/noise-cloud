@@ -1,19 +1,29 @@
 <?php
 
-namespace App\Listeners\SongFileUploaded;
+namespace App\Jobs\Music;
 
-use getID3;
-use App\Events\SongFileUploadedEvent;
 use App\Models\SongFile;
+use getID3;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Storage;
 
-class FetchSongFileMetaDataListener implements ShouldQueue
+class ReadId3FromFile implements ShouldQueue
 {
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    
     /**
      * @var getID3
      */
     protected $id3Reader;
+    
+    /**
+     * @var SongFile
+     */
+    protected $songFile;
     
     /**
      * meta data structure
@@ -32,47 +42,45 @@ class FetchSongFileMetaDataListener implements ShouldQueue
     ];
     
     /**
-     * FetchSongFileMetaDataListener constructor.
+     * ReadId3FromFile constructor.
      *
-     * @param \getID3 $id3Reader
+     * @param SongFile $songFile
      */
-    public function __construct(getID3 $id3Reader)
+    public function __construct(SongFile $songFile)
     {
-        $this->id3Reader = $id3Reader;
+        $this->songFile = $songFile;
     }
     
     /**
-     * Handle the event.
+     * handle the Job
      *
-     * @param  SongFileUploadedEvent  $event
-     * @return void
+     * @param getID3 $id3Reader
      */
-    public function handle(SongFileUploadedEvent $event)
+    public function handle(getID3 $id3Reader)
     {
-        $songFile = $event->songFile;
+        $this->id3Reader = $id3Reader;
+    
+        $this->songFile->changeStatus(SongFile::PROCESS_STATUS_FETCH_META);
         
-        $songFile->changeStatus(SongFile::PROCESS_STATUS_FETCH_META);
-        
-        $tags = $this->fetchMetaFromFile($songFile);
+        $tags = $this->fetchMetaFromFile();
         $this->setDataFromTagsArray($tags);
-        
-        $songFile->meta = $this->metaDataStructure;
-        $songFile->save();
+    
+        $this->songFile->meta = $this->metaDataStructure;
+        $this->songFile->save();
     }
     
     /**
      * Fetch all the tags from the file
      *
-     * @param SongFile $songFile
      * @return array
      */
-    protected function fetchMetaFromFile(SongFile $songFile)
+    protected function fetchMetaFromFile()
     {
         $fullMeta = $this->id3Reader->analyze(
-            Storage::disk('songs')->path($songFile->path)
+            Storage::disk('songs')->path($this->songFile->path)
         );
         
-        if (!isset($fullMeta['tags']) || !is_array($fullMeta['tags'])) {
+        if (!isset($fullMeta['tags']) || !\is_array($fullMeta['tags'])) {
             
             $this->metaDataStructure['error'] = 'Tags not found or Tag is not an array in file meta.';
             return [];
@@ -94,8 +102,8 @@ class FetchSongFileMetaDataListener implements ShouldQueue
                 if (!$newValue = array_get($tagsGroup, $metaName, false)) {
                     continue;
                 }
-    
-                $this->metaDataStructure['data'][$metaName] = is_array($newValue) ? $newValue[0] : $newValue;
+                
+                $this->metaDataStructure['data'][$metaName] = \is_array($newValue) ? $newValue[0] : $newValue;
             }
         }
     }

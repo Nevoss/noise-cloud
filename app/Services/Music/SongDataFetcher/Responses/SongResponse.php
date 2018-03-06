@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\SongDataFetcher\Responses;
+namespace App\Services\Music\SongDataFetcher\Responses;
 
-use App\Services\SongDataFetcher\Exceptions\SongDataFetcherException;
+use App\Services\Music\SongDataFetcher\Exceptions\SongDataFetcherException;
 
 class SongResponse
 {

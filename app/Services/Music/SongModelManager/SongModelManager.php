@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services\SongModelManager;
+namespace App\Services\Music\SongModelManager;
 
 use App\Models\Album;
 use App\Models\Artist;
 use App\Models\Song;
-use App\Services\SongDataFetcher\Contracts\SongDataFetcherInterface;
-use App\Services\SongModelManager\contracts\SongModelManagerInterface;
+use App\Services\Music\SongDataFetcher\Contracts\SongDataFetcherInterface;
+use App\Services\Music\SongModelManager\contracts\SongModelManagerInterface;
 use Illuminate\Database\Eloquent\Builder;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -113,6 +113,10 @@ class SongModelManager implements SongModelManagerInterface
                 'name' => $songResponse->album,
                 'artist_id' => $artist->id,
             ]);
+            
+            if ($songResponse->albumImage) {
+                $album->addMediaFromUrl($songResponse->albumImage)->toMediaCollection();;
+            }
         }
         
         return Song::create([

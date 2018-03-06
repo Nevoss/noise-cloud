@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\SongDataFetcher\Contracts;
+namespace App\Services\Music\SongDataFetcher\Contracts;
 
-use App\Services\SongDataFetcher\Responses\SongResponse;
+use App\Services\Music\SongDataFetcher\Responses\SongResponse;
 
 interface SongDataFetcherInterface
 {

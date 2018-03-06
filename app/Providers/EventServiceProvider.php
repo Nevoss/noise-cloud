@@ -2,10 +2,9 @@
 
 namespace App\Providers;
 
-use App\Events\SongFileUploadedEvent;
+use App\Events\Music\SongFileUploadedEvent;
 use App\Events\UserRegisteredEvent;
-use App\Listeners\SongFileUploaded\FetchSongDataFromMetaDataListener;
-use App\Listeners\SongFileUploaded\FetchSongFileMetaDataListener;
+use App\Listeners\Music\SongFileUploaded\FindSongMetaDataListener;
 use App\Listeners\UserRegistered\FetchUserPhotoListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -18,8 +17,7 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         SongFileUploadedEvent::class => [
-            FetchSongFileMetaDataListener::class,
-            FetchSongDataFromMetaDataListener::class
+            FindSongMetaDataListener::class
         ],
         UserRegisteredEvent::class => [
             FetchUserPhotoListener::class

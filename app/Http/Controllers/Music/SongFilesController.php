@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Music;
 
-use App\Events\SongFileUploadedEvent;
+use App\Events\Music\SongFileUploadedEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SongFileResource;
 use App\Models\SongFile;

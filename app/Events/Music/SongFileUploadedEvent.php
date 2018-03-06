@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\Music;
 
 use App\Models\SongFile;
 use Illuminate\Queue\SerializesModels;

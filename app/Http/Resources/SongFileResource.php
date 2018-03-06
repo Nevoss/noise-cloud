@@ -18,6 +18,7 @@ class SongFileResource extends JsonResource
             'id' => $this->id,
             'original_name' => $this->original_name,
             'public_path' => $this->public_path,
+            'song' => new SongResource($this->whenLoaded('song')),
         ];
     }
 }

@@ -1,7 +1,7 @@
 <?php
 namespace Tests;
 
-use App\Events\SongFileUploadedEvent;
+use App\Events\Music\SongFileUploadedEvent;
 use App\Models\SongFile;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;

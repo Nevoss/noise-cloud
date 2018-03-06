@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Services\SongDataFetcher\Contracts\SongDataFetcherInterface;
-use App\Services\SongDataFetcher\LastFmSongDataFetcher;
-use App\Services\SongModelManager\contracts\SongModelManagerInterface;
-use App\Services\SongModelManager\SongModelManager;
+use App\Services\Music\SongDataFetcher\Contracts\SongDataFetcherInterface;
+use App\Services\Music\SongDataFetcher\LastFmSongDataFetcher;
+use App\Services\Music\SongModelManager\contracts\SongModelManagerInterface;
+use App\Services\Music\SongModelManager\SongModelManager;
 use GuzzleHttp\Client;
 use Illuminate\Support\ServiceProvider;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services\SongDataFetcher;
+namespace App\Services\Music\SongDataFetcher;
 
-use App\Services\SongDataFetcher\Contracts\SongDataFetcherInterface;
-use App\Services\SongDataFetcher\Responses\SongResponse;
+use App\Services\Music\SongDataFetcher\Contracts\SongDataFetcherInterface;
+use App\Services\Music\SongDataFetcher\Responses\SongResponse;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 

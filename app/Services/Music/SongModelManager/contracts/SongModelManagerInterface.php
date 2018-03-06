@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\SongModelManager\contracts;
+namespace App\Services\Music\SongModelManager\contracts;
 
 use App\Models\Song;
 

@@ -8,10 +8,11 @@ use Illuminate\Support\Facades\Storage;
 
 class SongFile extends Model
 {
-    const PROCESS_STATUS_NONE = 0;
-    const PROCESS_STATUS_FETCH_META = 1;
-    const PROCESS_STATUS_FETCH_SONG_DATA = 2;
-    const PROCESS_STATUS_DONE = 3;
+    public const PROCESS_STATUS_NONE = 0;
+    public const PROCESS_STATUS_FETCH_META = 1;
+    public const PROCESS_STATUS_FETCH_SONG_DATA = 2;
+    public const PROCESS_STATUS_MOVING_FILE = 3;
+    public const PROCESS_STATUS_DONE = 4;
     
     /**
      * Available process status options
@@ -22,6 +23,7 @@ class SongFile extends Model
         self::PROCESS_STATUS_NONE,
         self::PROCESS_STATUS_FETCH_META,
         self::PROCESS_STATUS_FETCH_SONG_DATA,
+        self::PROCESS_STATUS_MOVING_FILE,
         self::PROCESS_STATUS_DONE,
     ];
     
@@ -39,6 +41,15 @@ class SongFile extends Model
      */
     protected $casts = [
         'meta' => 'array',
+    ];
+    
+    /**
+     * default loaded with
+     *
+     * @var array
+     */
+    protected $with = [
+        'song',
     ];
     
     /**

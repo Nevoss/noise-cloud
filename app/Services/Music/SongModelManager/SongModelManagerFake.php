@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Services\SongModelManager;
+namespace App\Services\Music\SongModelManager;
 
-use App\Models\Artist;
 use App\Models\Song;
-use App\Services\SongModelManager\contracts\SongModelManagerInterface;
+use App\Services\Music\SongModelManager\contracts\SongModelManagerInterface;
 
 class SongModelManagerFake implements SongModelManagerInterface
 {
