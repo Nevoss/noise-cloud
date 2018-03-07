@@ -102,23 +102,60 @@ class SongModelManager implements SongModelManagerInterface
             return null;
         }
         
-        $artist = Artist::firstOrCreate([
+        $artist = $this->createArtist($songResponse);
+        $album = $this->createAlbum($songResponse, $artist);
+        
+        return $this->createSong($songResponse, $artist, $album);
+    }
+    
+    /**
+     * Create artist
+     *
+     * @param $songResponse
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    protected function createArtist($songResponse)
+    {
+        return Artist::firstOrCreate([
             'name' => $songResponse->artist
         ]);
-        
-        $album = null;
-        
-        if ($songResponse->album) {
-            $album = Album::firstOrCreate([
-                'name' => $songResponse->album,
-                'artist_id' => $artist->id,
-            ]);
-            
-            if ($album && $songResponse->albumImage && !$album->getFirstMedia()) {
-                $album->addMediaFromUrl($songResponse->albumImage)->toMediaCollection();;
-            }
+    }
+    
+    /**
+     * Create Album
+     *
+     * @param $songResponse
+     * @param Artist $artist
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
+    protected function createAlbum($songResponse, Artist $artist)
+    {
+        if (!$songResponse->album) {
+            return null;
         }
         
+        $album = Album::firstOrCreate([
+            'name' => $songResponse->album,
+            'artist_id' => $artist->id,
+        ]);
+        
+        if ($album && $songResponse->albumImage && !$album->getFirstMedia()) {
+            $album->addMediaFromUrl($songResponse->albumImage)->toMediaCollection();;
+        }
+        
+        return $album;
+    }
+    
+    /**
+     * Create song
+     *
+     * @param $songResponse
+     * @param Artist $artist
+     * @param Album|null $album
+     * @return Song
+     */
+    protected function createSong($songResponse, Artist $artist, Album $album = null)
+    {
         return Song::create([
             'name' => $songResponse->title,
             'artist_id' => $artist->id,
