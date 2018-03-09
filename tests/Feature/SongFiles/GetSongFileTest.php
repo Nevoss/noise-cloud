@@ -18,6 +18,8 @@ class GetSongFileTest extends TestCase
             'user_id' => $user->id,
         ], 3);
         
+        create(SongFile::class, [], 5);
+        
         $response = $this->getAsUser(route('song-files.index'), $user)->json();
         
         $this->assertCount(3, $response['data']);

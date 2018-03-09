@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import UploaderComponent from './components/UploaderComponent'
 
 class Sidebar extends Component {
@@ -11,23 +12,23 @@ class Sidebar extends Component {
                         <span className="font-light font-serif tracking-wide uppercase pt-8 pb-2 px-4 block text-xs font-semibold"> Library </span>
                         <ul className="list-reset">
                             <li>
-                                <a className="block flex items-center py-4 px-8 mb-1 hover:bg-grey-lighter rounded" href="#">
+                                <Link className="block flex items-center py-4 px-8 mb-1 hover:bg-grey-lighter rounded" to="/music">
 
                                     <i className="icon-headphones text-grey mr-2" style={{width: 20}}></i>
                                     <span className=""> Music </span>
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a className="block flex items-center py-4 px-8 mb-1 hover:bg-grey-lighter rounded" href="#">
+                                <Link className="block flex items-center py-4 px-8 mb-1 hover:bg-grey-lighter rounded" to="/artists">
                                     <i className="icon-mic text-grey mr-2" style={{width: 20}}></i>
                                     <span className=""> Artists </span>
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a className="block flex items-center py-4 px-8 mb-1 hover:bg-grey-lighter rounded" href="#">
+                                <Link className="block flex items-center py-4 px-8 mb-1 hover:bg-grey-lighter rounded" to="/albums">
                                     <i className="icon-music text-grey mr-2" style={{width: 20}}></i>
                                     <span className=""> Albums </span>
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </li>

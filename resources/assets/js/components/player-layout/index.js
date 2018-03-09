@@ -13,7 +13,9 @@ class PlayerLayout extends Component {
                 <Navbar user={this.props.user} logoutAction={this.props.logoutAction} />
                 <Sidebar />
                 <div className="mainContainer container mx-auto">
-                    { this.props.children }
+                    <div className="mt-8">
+                        { this.props.children }
+                    </div>
                 </div>
                 <UploadingProcess />
             </div>

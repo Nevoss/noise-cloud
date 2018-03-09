@@ -2,7 +2,8 @@ import React, { Component }from 'react'
 import localForage from 'localforage'
 import { Switch, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { meAction, setTokenAction, setIsAuthenticatedAction } from "../services/actions/auth/index"
+import { meAction, setTokenAction, setIsAuthenticatedAction } from "../services/actions/auth"
+import { getSongFilesAction } from "../services/actions/song-files"
 import { AUTH_TOKEN_NAME } from '../services/actions/auth/constants'
 import RouteWithLayout from '../components/RouteWithLayout'
 import AuthLayout from './auth/components/auth-layout'
@@ -28,28 +29,26 @@ class App extends Component {
     checkAuthToken() {
 
         const waitPromise = new Promise((resolve) => {
-            setTimeout(resolve, 1000)
+            setTimeout(resolve, 0)
         })
 
-        Promise.all([localForage.getItem(AUTH_TOKEN_NAME), waitPromise]).then(values => {
+        return Promise.all([localForage.getItem(AUTH_TOKEN_NAME), waitPromise])
+            .then(values => {
+                const token = values[0]
 
-            const token = values[0]
+                if (token) {
+                    this.props.meAction(token)
+                    return
+                }
 
-            if (token) {
-                this.props.meAction(token)
-
-                return
-            }
-
-            this.props.setIsAuthenticatedAction(false)
-        })
+                this.props.setIsAuthenticatedAction(false)
+            })
     }
 
     render() {
         return (
             <div>
                 <AppLoader hide={this.props.isAuthenticated !== null} />
-
                 {
                     this.props.isAuthenticated !== null && (
                         <Switch>
@@ -74,4 +73,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, { meAction, setTokenAction, setIsAuthenticatedAction })(App))
+export default withRouter(connect(mapStateToProps, { meAction, setTokenAction, setIsAuthenticatedAction, getSongFilesAction })(App))

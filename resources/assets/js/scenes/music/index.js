@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import SongFilesList from './components/song-files-list'
 
 class Music extends Component {
 
     render() {
         return (
             <div>
-                <Link to="/artists"> To artists </Link>
-                From Music
+                <SongFilesList />
             </div>
         )
     }

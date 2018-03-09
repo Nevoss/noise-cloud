@@ -9,6 +9,10 @@ const upload = (file, token) => {
     return axios.post(window.route('song-files.store'), data, setToken(token))
 }
 
+const getAll = (filters, token) => {
+    return axios.get(window.route('song-files.index'), setToken(token))
+}
+
 export default {
     upload
 }
