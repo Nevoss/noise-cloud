@@ -1,0 +1,19 @@
+.table {
+  @apply .w-full;
+  border-spacing: 0;
+
+  & thead th {
+    @apply .text-sm .text-grey-dark .text-left .px-3 .font-normal .py-4 .border-grey-light .border-b-2;
+  }
+
+  & tbody td {
+    @apply .px-3 .py-4 .border-b-2 .border-grey-lighter text-sm;
+  }
+
+  &.striped {
+    & tbody tr:nth-child(2n) {
+      @apply .bg-grey-lightest;
+    }
+  }
+
+}

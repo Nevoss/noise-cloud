@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Player from "./components/player"
 
 class Navbar extends Component {
 
@@ -28,9 +29,7 @@ class Navbar extends Component {
                     <img src="/images/logo.svg" alt="logo" style={{ width: 170 }}/>
                 </div>
 
-                <div>
-
-                </div>
+                <Player/>
 
                 <div className="h-full w-1/5">
                     <ul className="flex w-full list-reset h-full justify-end">

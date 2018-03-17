@@ -72,8 +72,8 @@ export const meAction = token => {
     return dispatch => {
         return api.auth.me(token)
             .then(({ data }) => {
-                dispatch(setUserAction(data.data))
                 dispatch(setTokenAction(token))
+                dispatch(setUserAction(data.data))
             }).catch(() => {
                 dispatch(discardTokenAction())
             })
@@ -104,8 +104,8 @@ export const loginAction = data => {
     return (dispatch) => {
         return api.auth.login(data)
             .then(({ data }) => {
-                dispatch(setUserAction(data.data))
                 dispatch(setTokenAction(data.meta.token))
+                dispatch(setUserAction(data.data))
                 dispatch(storeTokenAction(data.meta.token))
 
                 return Promise.resolve()

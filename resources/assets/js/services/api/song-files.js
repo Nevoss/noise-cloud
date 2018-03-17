@@ -14,5 +14,5 @@ const getAll = (filters, token) => {
 }
 
 export default {
-    upload
+    upload, getAll
 }

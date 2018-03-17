@@ -3,7 +3,6 @@ import localForage from 'localforage'
 import { Switch, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { meAction, setTokenAction, setIsAuthenticatedAction } from "../services/actions/auth"
-import { getSongFilesAction } from "../services/actions/song-files"
 import { AUTH_TOKEN_NAME } from '../services/actions/auth/constants'
 import RouteWithLayout from '../components/RouteWithLayout'
 import AuthLayout from './auth/components/auth-layout'
@@ -73,4 +72,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, { meAction, setTokenAction, setIsAuthenticatedAction, getSongFilesAction })(App))
+export default withRouter(connect(mapStateToProps, { meAction, setTokenAction, setIsAuthenticatedAction })(App))

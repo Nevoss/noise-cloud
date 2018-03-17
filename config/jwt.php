@@ -15,7 +15,7 @@ use Tymon\JWTAuth\Providers\JWT\NamshiAdapter;
 use Tymon\JWTAuth\Providers\Storage\IlluminateCacheAdapter;
 use Tymon\JWTAuth\Providers\User\EloquentUserAdapter;
 
-return [
+return array(
 
     /*
     |--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'ttl' => 60 ,
+    'ttl' => 60 * 24,
 
     /*
     |--------------------------------------------------------------------------
@@ -104,7 +104,7 @@ return [
     |
     */
 
-    'required_claims' => ['iss', 'iat', 'exp', 'nbf', 'sub', 'jti'],
+    'required_claims' => array('iss', 'iat', 'exp', 'nbf', 'sub', 'jti'),
 
     /*
     |--------------------------------------------------------------------------
@@ -127,7 +127,7 @@ return [
     |
     */
 
-    'providers' => [
+    'providers' => array(
 
         /*
         |--------------------------------------------------------------------------
@@ -174,6 +174,6 @@ return [
 
         'storage' => IlluminateCacheAdapter::class,
 
-    ],
+    ),
 
-];
+);
