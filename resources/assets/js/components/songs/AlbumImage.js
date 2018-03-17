@@ -1,9 +1,12 @@
 import React from 'react'
 import _ from 'lodash'
 
-export default ({ songFile }) => {
+export default ({ songFile, size }) => {
+
+    size = size ? size : 8
+
     let image = (
-        <div className="w-8 h-8 bg-grey-light flex items-center justify-center text-white text-md">
+        <div className={'bg-grey-light flex items-center justify-center text-white text-md ' + `w-${size} h-${size}`}>
             <i className="icon-music"></i>
         </div>
     )
@@ -13,7 +16,7 @@ export default ({ songFile }) => {
     }
 
     return (
-        <div className="rounded-full w-8 h-8 overflow-hidden">
+        <div className={"rounded-full overflow-hidden " + `w-${size} h-${size}`}>
             {image}
         </div>
     )

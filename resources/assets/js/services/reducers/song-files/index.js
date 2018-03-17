@@ -1,5 +1,5 @@
 import {createReducer} from "../utilities"
-import { SONG_FILES_SET_LIST, SONG_FILES_CHANGE_ORDER, SONG_FILES_SET_PLAYING_SONG_FILE, SONG_FILES_SET_IS_PLAYING } from "../../actions/song-files/constansts"
+import { SONG_FILES_SET_LIST, SONG_FILES_CHANGE_ORDER, SONG_FILES_SET_CURRENT_ID_LIST } from "../../actions/song-files/constansts"
 
 const setSongFiles = (state, action) => {
     return {
@@ -18,18 +18,10 @@ const changeListOrder = (state, action) => {
     }
 }
 
-const setPlayingSongFile = (state, action) => {
+const setCurrentIdList = (state, action) => {
     return {
         ...state,
-        playingSongId: action.payload,
-        isPlaying: true,
-    }
-}
-
-const setIsPlaying = (state, action) => {
-    return {
-        ...state,
-        isPlaying: action.payload
+        currentIdList: action.payload
     }
 }
 
@@ -40,11 +32,9 @@ export default createReducer({
         by: 'song.artist.name',
         direction: 'asc',
     },
-    playingSongId: null,
-    isPlaying: false,
+    currentIdList: [],
 }, {
     [SONG_FILES_SET_LIST]: setSongFiles,
     [SONG_FILES_CHANGE_ORDER]: changeListOrder,
-    [SONG_FILES_SET_PLAYING_SONG_FILE]: setPlayingSongFile,
-    [SONG_FILES_SET_IS_PLAYING]: setIsPlaying
+    [SONG_FILES_SET_CURRENT_ID_LIST]: setCurrentIdList
 })

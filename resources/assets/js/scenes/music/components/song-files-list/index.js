@@ -1,11 +1,17 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getOrderedList } from '../../../../services/selectors/song-files'
-import { changeOrderAction } from "../../../../services/actions/song-files/index";
+import { getMusicPageList } from '../../../../services/selectors/song-files'
+import { changeOrderAction, setCurrentIdListAction } from "../../../../services/actions/song-files/index";
 import SongFileItem from './components/SongFileItem'
 
 class SongFilesList extends Component {
+
+    componentDidUpdate() {
+        this.props.setCurrentIdListAction(
+            _.values(_.mapValues(this.props.songFiles, 'id'))
+        )
+    }
 
     changeOrder(path) {
         let direction = (path === this.props.order.by && this.props.order.direction === 'asc') ? 'desc' : 'asc'
@@ -86,9 +92,9 @@ class SongFilesList extends Component {
 
 const mapStateToProps = state => {
     return {
-        songFiles: getOrderedList(state),
+        songFiles: getMusicPageList(state),
         order: state.songFiles.order,
     }
 }
 
-export default connect(mapStateToProps, { changeOrderAction })(SongFilesList)
+export default connect(mapStateToProps, { changeOrderAction, setCurrentIdListAction })(SongFilesList)

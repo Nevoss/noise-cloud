@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import api from '../../api'
-import { SONG_FILES_SET_LIST, SONG_FILES_CHANGE_ORDER, SONG_FILES_SET_PLAYING_SONG_FILE, SONG_FILES_SET_IS_PLAYING } from "./constansts"
+import { SONG_FILES_SET_LIST, SONG_FILES_CHANGE_ORDER, SONG_FILES_SET_CURRENT_ID_LIST } from "./constansts"
 
 export const setSongFilesListAction = (list) => {
     return {
@@ -18,17 +18,10 @@ export const changeOrderAction = (by, direction) => {
     }
 }
 
-export const setPlayingSongFileAction = (songFileId) => {
+export const setCurrentIdListAction = (currentIdList) => {
     return {
-        type: SONG_FILES_SET_PLAYING_SONG_FILE,
-        payload: songFileId
-    }
-}
-
-export const setIsPlayingAction = (isPlaying) => {
-    return {
-        type: SONG_FILES_SET_IS_PLAYING,
-        payload: !!isPlaying
+        type: SONG_FILES_SET_CURRENT_ID_LIST,
+        payload: currentIdList
     }
 }
 

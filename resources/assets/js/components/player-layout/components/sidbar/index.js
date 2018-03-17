@@ -14,19 +14,19 @@ class Sidebar extends Component {
                             <li>
                                 <Link className="block flex items-center py-4 px-8 mb-1 hover:bg-grey-lighter rounded" to="/music">
 
-                                    <i className="icon-headphones text-grey mr-2" style={{width: 20}}></i>
+                                    <i className="icon-headphones text-grey mr-2 text-lg" style={{width: 20}}></i>
                                     <span className=""> Music </span>
                                 </Link>
                             </li>
                             <li>
                                 <Link className="block flex items-center py-4 px-8 mb-1 hover:bg-grey-lighter rounded" to="/artists">
-                                    <i className="icon-mic text-grey mr-2" style={{width: 20}}></i>
+                                    <i className="icon-mic text-grey mr-2 text-lg" style={{width: 20}}></i>
                                     <span className=""> Artists </span>
                                 </Link>
                             </li>
                             <li>
                                 <Link className="block flex items-center py-4 px-8 mb-1 hover:bg-grey-lighter rounded" to="/albums">
-                                    <i className="icon-music text-grey mr-2" style={{width: 20}}></i>
+                                    <i className="icon-music text-grey mr-2 text-lg" style={{width: 20}}></i>
                                     <span className=""> Albums </span>
                                 </Link>
                             </li>

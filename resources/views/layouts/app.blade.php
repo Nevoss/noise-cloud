@@ -13,6 +13,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <style>
+        html {
+            overflow-y:scroll;
+        }
+    </style>
+
     @routes
 </head>
 <body class="bg-grey-lightest text-black font-sans font-light">
