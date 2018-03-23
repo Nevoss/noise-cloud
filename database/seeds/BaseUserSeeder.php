@@ -14,14 +14,10 @@ class BaseUserSeeder extends Seeder
     {
         $str = 'BASE_USER';
         
-        if (!env("{$str}_NAME") || !env("{$str}_EMAIL") || !env("{$str}_PASSWORD")) {
-            return;
-        }
-        
         User::create([
-            'name' => env("{$str}_NAME"),
-            'email' => env("{$str}_EMAIL"),
-            'password' => bcrypt(env("{$str}_PASSWORD")),
+            'name' => env("{$str}_NAME", 'User'),
+            'email' => env("{$str}_EMAIL", 'user@example.com'),
+            'password' => bcrypt(env("{$str}_PASSWORD", 'secret')),
         ]);
     }
 }

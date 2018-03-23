@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class AppReset extends Command
@@ -33,9 +33,17 @@ class AppReset extends Command
             return;
         }
         
-        Artisan::call('migrate:fresh');
+        File::cleanDirectory(Storage::disk('songs')->path(''));
         
-        Artisan::call('db:seed', [
+        $this->info('songs disk was cleared');
+        
+        File::cleanDirectory(Storage::disk('media')->path(''));
+    
+        $this->info('media disk was cleared');
+        
+        $this->call('migrate:fresh');
+        
+        $this->call('db:seed', [
             '--class' => 'BaseUserSeeder'
         ]);
     }
