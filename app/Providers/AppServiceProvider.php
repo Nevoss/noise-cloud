@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\SongFile;
+use App\Observers\SongFileObserver;
 use App\Services\Music\SongDataFetcher\Contracts\SongDataFetcherInterface;
 use App\Services\Music\SongDataFetcher\LastFmSongDataFetcher;
 use App\Services\Music\SongModelManager\contracts\SongModelManagerInterface;
@@ -18,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        SongFile::observe(SongFileObserver::class);
     }
 
     /**

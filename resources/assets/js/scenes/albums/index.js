@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getSongFilesAction } from "../../services/actions/song-files/index"
-import SongFilesList from '../../components/songs/song-files-list'
+import AlbumList from './components/album-list'
 
-class Music extends Component {
+class Albums extends Component {
 
     componentWillMount() {
         this.props.getSongFilesAction();
@@ -11,12 +11,11 @@ class Music extends Component {
 
     render() {
         return (
-            <div className="mb-6">
-                <SongFilesList />
+            <div>
+                <AlbumList />
             </div>
         )
     }
-
 }
 
-export default connect(null, { getSongFilesAction })(Music)
+export default connect(null, { getSongFilesAction })(Albums)

@@ -60,4 +60,19 @@ class SongFilesController extends Controller
         
         return response()->json(null, 200);
     }
+    
+    /**
+     * A user can delete SongFile
+     *
+     * @param SongFile $songFile
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete(SongFile $songFile)
+    {
+        $this->authorize('delete', $songFile);
+        
+        $songFile->delete();
+        
+        return response()->json(null, 200);
+    }
 }

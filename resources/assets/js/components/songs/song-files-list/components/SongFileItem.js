@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { playSongFromListAction } from "../../../../../services/actions/player/index";
-import AlbumImage from '../../../../../components/songs/AlbumImage'
+import { playSongFromListAction } from "../../../../services/actions/player/index";
+import AlbumImage from '../../AlbumImage'
 
 class SongFileItem extends Component {
 

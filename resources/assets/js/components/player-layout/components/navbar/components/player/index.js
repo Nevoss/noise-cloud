@@ -38,31 +38,20 @@ class Player extends Component {
             <div className="h-full">
                 <ReactPlayer
                     url={_.get(this.props.playingSongFile, 'public_path')}
-                    onProgress={(progress) => {
-                        this.setState({
-                            progress
-                        })
-                    }}
-                    onDuration={(duration) => {
-                        this.setState({
-                            totalTime: this.transformSecsToMins(duration)
-                        })
-                    }}
+                    onProgress={ progress => this.setState({ progress}) }
+                    onDuration={ duration => this.setState({ totalTime: this.transformSecsToMins(duration) }) }
+                    onEnded={this.props.playNextSongAction}
                     volume={this.state.volume}
                     playing={this.props.isPlaying}
                     width={0}
                     height={0}
-                    config={{
-                        file: {
-                            forceAudio: true
-                        }
-                    }}
-                />
+                    config={{ file: { forceAudio: true } }}
+                    />
 
-                <div className="flex h-full">
-                    <div className="flex justify-center items-center mr-4 w-10">
-                        <AlbumImage songFile={this.props.playingSongFile} size={10}/>
-                    </div>
+                    <div className="flex h-full">
+                        <div className="flex justify-center items-center mr-4 w-10">
+                            <AlbumImage songFile={this.props.playingSongFile} size={10}/>
+                        </div>
                     <div className="text-xs text-center relative h-full">
                         <span className="block mt-2">
                             {

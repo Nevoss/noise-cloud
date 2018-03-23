@@ -13,6 +13,7 @@ import Register from "./auth/scenes/register"
 import Home from './home'
 import Music from "./music"
 import Artists from "./artists"
+import Albums from "./albums"
 
 class App extends Component {
 
@@ -55,6 +56,7 @@ class App extends Component {
                             <RouteWithLayout exact path="/register" component={Register} layout={AuthLayout} mustGuest={true}/>
                             <RouteWithLayout exact path="/music" component={Music} layout={PlayerLayout} mustAuth={true}/>
                             <RouteWithLayout exact path="/artists" component={Artists} layout={PlayerLayout} mustAuth={true}/>
+                            <RouteWithLayout exact path="/albums" component={Albums} layout={PlayerLayout} mustAuth={true}/>
                             <RouteWithLayout exact path="/" component={Home} layout={PlayerLayout} mustAuth={true}/>
                         </Switch>
                     )

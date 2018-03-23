@@ -18,3 +18,18 @@ export const getPlayingSongFile = createSelector(
         return _.get(list, songFileId, null)
     }
 )
+
+export const getSongFilesAlbums = createSelector(
+    [ getSongFilesList ],
+    (list) => {
+        let albums = {};
+
+        _.forEach(list, item => {
+            if (_.get(item, 'song.album.id') && !albums[_.get(item, 'song.album.id')]) {
+                albums[item.song.album.id] = item.song.album
+            }
+        })
+
+        return albums
+    }
+)

@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getMusicPageList } from '../../../../services/selectors/song-files'
-import { changeOrderAction, setCurrentIdListAction } from "../../../../services/actions/song-files/index";
+import { getMusicPageList } from '../../../services/selectors/song-files/index'
+import { changeOrderAction, setCurrentIdListAction } from "../../../services/actions/song-files/index";
 import SongFileItem from './components/SongFileItem'
 
 class SongFilesList extends Component {

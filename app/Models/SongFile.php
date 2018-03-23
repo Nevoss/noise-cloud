@@ -103,7 +103,7 @@ class SongFile extends Model
      */
     public function changeStatus($status)
     {
-        if (!in_array($status, self::$availableStatuses, false)) {
+        if (!\in_array($status, self::$availableStatuses, false)) {
             return;
         }
         
