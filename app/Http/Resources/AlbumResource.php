@@ -18,6 +18,7 @@ class AlbumResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'image' => $this->getFirstMediaUrl() ?: null,
+            'artist' => new ArtistResource($this->whenLoaded('artist'))
         ];
     }
 }

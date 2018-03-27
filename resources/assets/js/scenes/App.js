@@ -52,11 +52,11 @@ class App extends Component {
                 {
                     this.props.isAuthenticated !== null && (
                         <Switch>
-                            <RouteWithLayout exact path="/login" component={Login} layout={AuthLayout} mustGuest={true}/>
-                            <RouteWithLayout exact path="/register" component={Register} layout={AuthLayout} mustGuest={true}/>
-                            <RouteWithLayout exact path="/music" component={Music} layout={PlayerLayout} mustAuth={true}/>
-                            <RouteWithLayout exact path="/artists" component={Artists} layout={PlayerLayout} mustAuth={true}/>
-                            <RouteWithLayout exact path="/albums" component={Albums} layout={PlayerLayout} mustAuth={true}/>
+                            <RouteWithLayout path="/login" component={Login} layout={AuthLayout} mustGuest={true}/>
+                            <RouteWithLayout path="/register" component={Register} layout={AuthLayout} mustGuest={true}/>
+                            <RouteWithLayout path="/music" component={Music} layout={PlayerLayout} mustAuth={true}/>
+                            <RouteWithLayout path="/artists" component={Artists} layout={PlayerLayout} mustAuth={true}/>
+                            <RouteWithLayout path="/albums" component={Albums} layout={PlayerLayout} mustAuth={true}/>
                             <RouteWithLayout exact path="/" component={Home} layout={PlayerLayout} mustAuth={true}/>
                         </Switch>
                     )

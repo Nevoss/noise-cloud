@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getMusicPageList } from '../../../services/selectors/song-files/index'
+import { getMusicList } from '../../../services/selectors/song-files/index'
 import { changeOrderAction, setCurrentIdListAction } from "../../../services/actions/song-files/index";
 import SongFileItem from './components/SongFileItem'
 
@@ -17,12 +17,6 @@ class SongFilesList extends Component {
         let direction = (path === this.props.order.by && this.props.order.direction === 'asc') ? 'desc' : 'asc'
 
         this.props.changeOrderAction(path, direction)
-    }
-
-    renderFile(songFile) {
-        return (
-            <SongFileItem songFile={songFile} key={songFile.id} />
-        )
     }
 
     renderOrderArrows(path) {
@@ -45,54 +39,52 @@ class SongFilesList extends Component {
 
     render() {
         return (
-            <div className="w-full mx-auto bg-white shadow p-6">
-                <table className="table striped">
-                    <thead>
-                        <tr>
-                            <th>  </th>
-                            <th>
-                                <span onClick={() => this.changeOrder('original_name')} className="cursor-pointer">
-                                    File Name
-                                </span>
-                                {this.renderOrderArrows('original_name')}
-                            </th>
-                            <th>
-                                <span onClick={() => this.changeOrder('song.name')} className="cursor-pointer">
-                                    Song
-                                </span>
-                                {this.renderOrderArrows('song.name')}
-                            </th>
-                            <th>
-                                <span onClick={() => this.changeOrder('song.artist.name')} className="cursor-pointer">
-                                    Artist
-                                </span>
-                                {this.renderOrderArrows('song.artist.name')}
-                            </th>
-                            <th>
-                                <span onClick={() => this.changeOrder('song.album.name')} className="cursor-pointer">
-                                    Album
-                                </span>
-                                {this.renderOrderArrows('song.album.name')}
-                            </th>
-                            <th>  </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            _.map(this.props.songFiles, songFile => {
-                                return this.renderFile(songFile)
-                            })
-                        }
-                    </tbody>
-                </table>
-            </div>
+            <table className="table striped">
+                <thead>
+                <tr>
+                    <th>  </th>
+                    <th>
+                    <span onClick={() => this.changeOrder('original_name')} className="cursor-pointer">
+                        File Name
+                    </span>
+                        {this.renderOrderArrows('original_name')}
+                    </th>
+                    <th>
+                    <span onClick={() => this.changeOrder('song.name')} className="cursor-pointer">
+                        Song
+                    </span>
+                        {this.renderOrderArrows('song.name')}
+                    </th>
+                    <th>
+                    <span onClick={() => this.changeOrder('song.artist.name')} className="cursor-pointer">
+                        Artist
+                    </span>
+                        {this.renderOrderArrows('song.artist.name')}
+                    </th>
+                    <th>
+                    <span onClick={() => this.changeOrder('song.album.name')} className="cursor-pointer">
+                        Album
+                    </span>
+                        {this.renderOrderArrows('song.album.name')}
+                    </th>
+                    <th>  </th>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                    _.map(this.props.songFiles, songFile => {
+                        return <SongFileItem songFile={songFile} key={songFile.id} />
+                    })
+                }
+                </tbody>
+            </table>
         )
     }
 }
 
 const mapStateToProps = state => {
     return {
-        songFiles: getMusicPageList(state),
+        songFiles: getMusicList(state),
         order: state.songFiles.order,
     }
 }

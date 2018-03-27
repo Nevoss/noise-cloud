@@ -2,19 +2,23 @@ import './bootstrap'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
-import { BrowserRouter } from 'react-router-dom'
+import createHistory from 'history/createBrowserHistory'
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk';
 import reducers from './services/reducers'
 import App from './scenes/App'
 
-let createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore)
+let history = createHistory()
+
+let createStoreWithMiddleware = applyMiddleware(thunkMiddleware, routerMiddleware(history))(createStore)
+
 
 ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
             <App />
-        </BrowserRouter>
+        </ConnectedRouter>
     </Provider>,
     document.getElementById('app')
 )

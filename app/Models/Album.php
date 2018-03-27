@@ -16,4 +16,9 @@ class Album extends Model implements HasMedia
      * @var array
      */
     protected $guarded = [];
+    
+    public function artist()
+    {
+        return $this->belongsTo(Artist::class);
+    }
 }

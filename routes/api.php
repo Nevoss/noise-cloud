@@ -11,3 +11,5 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('auth.logout');
 Route::get('/song-files', 'Music\SongFilesController@index')->name('song-files.index');
 Route::delete('/song-files/{songFile}', 'Music\SongFilesController@delete')->name('song-files.delete');
 Route::post('/song-files/upload', 'Music\SongFilesController@store')->name('song-files.store');
+
+Route::get('/albums', 'Music\AlbumsController@index')->name('albums.index');
