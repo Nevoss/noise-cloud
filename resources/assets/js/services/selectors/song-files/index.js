@@ -6,6 +6,17 @@ const getSongFilesOrder = state => state.songFiles.order
 const getSongFilesFilters = state => state.songFiles.filters
 const getPlayingSongFileId = state => state.player.playingSongId
 
+const fetchAlbumFromSongFile = (item) => {
+    if (!item ) {
+        return null;
+    }
+
+    let album = item.song.album
+    album.artist = item.song.artist
+
+    return album
+}
+
 export const getMusicList = createSelector(
     [getSongFilesList, getSongFilesOrder, getSongFilesFilters],
     (list, order, filters) => {
@@ -34,8 +45,7 @@ export const getSongFilesAlbums = createSelector(
 
         _.forEach(list, item => {
             if (_.get(item, 'song.album.id') && !albums[_.get(item, 'song.album.id')]) {
-                albums[item.song.album.id] = item.song.album
-                albums[item.song.album.id].artist = item.song.artist
+                albums[item.song.album.id] = fetchAlbumFromSongFile(item)
             }
         })
 
@@ -44,13 +54,21 @@ export const getSongFilesAlbums = createSelector(
 )
 
 export const getChosenAlbum = createSelector(
-    [ getSongFilesAlbums, getSongFilesFilters ],
-    (albums, filter) => {
+    [ getSongFilesList, getSongFilesFilters ],
+    (list, filter) => {
 
         if (!filter.albumId) {
             return null
         }
 
-        return _.find(albums, album => album.id === filter.albumId )
+        let album = null
+
+        _.forEach(list, item => {
+            if (_.get(item, 'song.album.id') === filter.albumId) {
+                album = fetchAlbumFromSongFile(item)
+            }
+        })
+
+        return album
     }
 )

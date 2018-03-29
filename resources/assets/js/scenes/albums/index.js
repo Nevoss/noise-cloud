@@ -7,17 +7,8 @@ import AlbumShowSongs from './components/AlbumShowSongs'
 
 class Albums extends Component {
 
-    componentWillMount() {
-        this.props.getSongFilesAction();
-    }
-
     componentDidMount() {
-
-        let albumId = this.props.match.params.id
-
-        if (albumId) {
-            this.props.setAlbumFilterAction(albumId)
-        }
+        // this.props.getSongFilesAction();
     }
 
     render() {
@@ -25,7 +16,7 @@ class Albums extends Component {
             <div>
                 <AlbumList />
                 <div>
-                    <Route path="/albums/:id" component={AlbumShowSongs} />
+                    <AlbumShowSongs/>
                 </div>
             </div>
         )

@@ -12,9 +12,9 @@ class AlbumList extends Component {
             return (
                 <div className="mr-8" key={album.id}>
                     <div>
-                        <Link to={`/albums/${album.id}`} onClick={() => this.props.setAlbumFilterAction(album.id) }>
+                        <span onClick={() => this.props.setAlbumFilterAction(album.id) } className="cursor-pointer">
                             <img src={_.get(album, 'image')} alt={album.name} className="w-32 h-32"/>
-                        </Link>
+                        </span>
                     </div>
                     <span className="text-xs font-semibold block mt-2">
                         { album.name }

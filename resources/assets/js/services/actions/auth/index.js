@@ -2,6 +2,7 @@ import localForage from 'localforage'
 import api from '../../api'
 import { throwErrors } from "../../reducers/utilities"
 import { AUTH_SET_TOKEN, AUTH_DISCARD_TOKEN, AUTH_SET_USER, AUTH_SET_IS_AUTHENTICATED, AUTH_TOKEN_NAME } from './constants'
+import {getSongFilesAction} from "../song-files/index";
 
 /**
  *
@@ -74,6 +75,7 @@ export const meAction = token => {
             .then(({ data }) => {
                 dispatch(setTokenAction(token))
                 dispatch(setUserAction(data.data))
+                dispatch(getSongFilesAction())
             }).catch(() => {
                 dispatch(discardTokenAction())
             })
@@ -107,6 +109,7 @@ export const loginAction = data => {
                 dispatch(setTokenAction(data.meta.token))
                 dispatch(setUserAction(data.data))
                 dispatch(storeTokenAction(data.meta.token))
+                dispatch(getSongFilesAction())
 
                 return Promise.resolve()
             }).catch(({ response: { status, data } }) => {
@@ -129,6 +132,7 @@ export const registerAction = data => {
                 dispatch(storeTokenAction(data.meta.token))
                 dispatch(setUserAction(data.data))
                 dispatch(setTokenAction(data.meta.token))
+                dispatch(getSongFilesAction())
 
                 return Promise.resolve()
             })

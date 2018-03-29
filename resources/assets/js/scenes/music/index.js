@@ -6,11 +6,8 @@ import SongFilesList from '../../components/songs/song-files-list'
 class Music extends Component {
 
     componentWillMount() {
-        this.props.getSongFilesAction();
-    }
-
-    componentDidMount() {
         this.props.resetFilterAction();
+        // this.props.getSongFilesAction();
     }
 
     render() {
