@@ -60,6 +60,7 @@ class LastFmSongDataFetcher implements  SongDataFetcherInterface
         return SongResponse::create([
             'title' => array_get($response, 'track.name'),
             'artist' => array_get($response, 'track.artist.name'),
+            'artistImage' => array_get($response, 'track.artist.image.2.#text'),
             'album' => array_get($response, 'track.album.title'),
             'albumImage' => array_get($response, 'track.album.image.2.#text')
         ]);

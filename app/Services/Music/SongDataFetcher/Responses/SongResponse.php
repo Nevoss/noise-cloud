@@ -21,6 +21,13 @@ class SongResponse
     public $artist;
     
     /**
+     * Artist Image
+     *
+     * @var string
+     */
+    public $artistImage;
+    
+    /**
      * Album Name
      *
      * @var string

@@ -98,7 +98,7 @@ class SongModelManager implements SongModelManagerInterface
             $this->searchOptions['artist']
         );
         
-        if ($songResponse->isEmpty()) {
+        if ($songResponse || $songResponse->isEmpty()) {
             return null;
         }
         
@@ -116,9 +116,15 @@ class SongModelManager implements SongModelManagerInterface
      */
     protected function createArtist($songResponse)
     {
-        return Artist::firstOrCreate([
+        $artist = Artist::firstOrCreate([
             'name' => $songResponse->artist
         ]);
+        
+        if ($songResponse->artistImage && !$artist->getFirstMedia()) {
+            $artist->addMediaFromUrl($songResponse->artistImage)->toMediaCollection();
+        }
+        
+        return $artist;
     }
     
     /**
@@ -139,8 +145,8 @@ class SongModelManager implements SongModelManagerInterface
             'artist_id' => $artist->id,
         ]);
         
-        if ($album && $songResponse->albumImage && !$album->getFirstMedia()) {
-            $album->addMediaFromUrl($songResponse->albumImage)->toMediaCollection();;
+        if ($songResponse->albumImage && !$album->getFirstMedia()) {
+            $album->addMediaFromUrl($songResponse->albumImage)->toMediaCollection();
         }
         
         return $album;
