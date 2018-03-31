@@ -1,14 +1,15 @@
+import _ from 'lodash'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Route } from 'react-router-dom'
 import { getSongFilesAction, setAlbumFilterAction } from "../../services/actions/song-files/index"
 import AlbumList from './components/album-list'
 import AlbumShowSongs from './components/AlbumShowSongs'
+import { getSongFilesAlbums } from "../../services/selectors/song-files/index"
 
 class Albums extends Component {
 
     componentDidMount() {
-        // this.props.getSongFilesAction();
+        this.props.setAlbumFilterAction(parseInt(_.first(_.keys(this.props.albums))))
     }
 
     render() {
@@ -23,4 +24,10 @@ class Albums extends Component {
     }
 }
 
-export default connect(null, { getSongFilesAction, setAlbumFilterAction })(Albums)
+const mapStateToProps = state => {
+    return {
+        albums: getSongFilesAlbums(state)
+    }
+}
+
+export default connect(mapStateToProps, { getSongFilesAction, setAlbumFilterAction })(Albums)

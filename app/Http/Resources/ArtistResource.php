@@ -17,6 +17,7 @@ class ArtistResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'image' => $this->getFirstMediaUrl() ?: null,
         ];
     }
 }

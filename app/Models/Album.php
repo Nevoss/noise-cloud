@@ -17,6 +17,11 @@ class Album extends Model implements HasMedia
      */
     protected $guarded = [];
     
+    /**
+     * Relation between Album an Artist
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function artist()
     {
         return $this->belongsTo(Artist::class);

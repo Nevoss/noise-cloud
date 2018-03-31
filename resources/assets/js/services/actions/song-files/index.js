@@ -41,6 +41,15 @@ export const setAlbumFilterAction = (albumId) => {
     }
 }
 
+export const setArtistFilterAction = (artistId) => {
+    return {
+        type: SONG_FILES_FILTER_BY,
+        payload: {
+            artistId: artistId
+        }
+    }
+}
+
 export const getSongFilesAction = () => {
     return (dispatch, getState) => {
 

@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
-class Artist extends Model
+class Artist extends Model implements HasMedia
 {
+    use HasMediaTrait;
+    
     /**
      * no guarded fields
      *
