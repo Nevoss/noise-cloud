@@ -13,14 +13,22 @@ class Albums extends Component {
     }
 
     render() {
-        return (
-            <div>
-                <AlbumList />
-                <div>
-                    <AlbumShowSongs/>
+        if (_.isEmpty(this.props.albums)) {
+            return (
+                <div className="bg-white shadow p-6">
+                    There is no Albums.
                 </div>
-            </div>
-        )
+            )
+        } else {
+            return (
+                <div>
+                    <AlbumList />
+                    <div>
+                        <AlbumShowSongs/>
+                    </div>
+                </div>
+            )
+        }
     }
 }
 

@@ -6,6 +6,7 @@ use App\Services\Music\SongDataFetcher\Contracts\SongDataFetcherInterface;
 use App\Services\Music\SongDataFetcher\Responses\SongResponse;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
+use Illuminate\Support\Facades\Log;
 
 class LastFmSongDataFetcher implements  SongDataFetcherInterface
 {
@@ -88,6 +89,13 @@ class LastFmSongDataFetcher implements  SongDataFetcherInterface
             return json_decode($response->getBody(), 'true');
             
         } catch (BadResponseException $e) {
+            
+            Log::error($e->getMessage(), [
+                'provider' => 'Last-FM',
+                'method' => $method,
+                'api-method' => $apiMethod,
+                'params' => $params
+            ]);
             
             return false;
             

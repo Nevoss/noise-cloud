@@ -32,9 +32,9 @@ class Sidebar extends Component {
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <span className="font-light font-serif tracking-wide uppercase pt-8 pb-2 px-4 block text-xs font-semibold"> Playlists </span>
-                    </li>
+                    {/*<li>*/}
+                        {/*<span className="font-light font-serif tracking-wide uppercase pt-8 pb-2 px-4 block text-xs font-semibold"> Playlists </span>*/}
+                    {/*</li>*/}
                 </ul>
 
                 <UploaderComponent />

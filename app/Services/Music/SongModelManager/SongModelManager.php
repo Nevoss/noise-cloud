@@ -98,7 +98,7 @@ class SongModelManager implements SongModelManagerInterface
             $this->searchOptions['artist']
         );
         
-        if ($songResponse || $songResponse->isEmpty()) {
+        if (!$songResponse || $songResponse->isEmpty()) {
             return null;
         }
         

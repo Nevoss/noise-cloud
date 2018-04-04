@@ -13,26 +13,34 @@ class Artists extends Component {
     }
 
     render() {
-        return (
-            <div className="flex -mx-4">
-                <div className="w-1/4 mx-4">
-                    <ArtistList />
+        if (_.isEmpty(this.props.artists)) {
+            return (
+                <div className="bg-white shadow p-6">
+                    There is no Artists.
                 </div>
-                <div className="w-3/4 mx-4">
-                    <div className="bg-white shadow p-6">
-                        {
-                            this.props.chosenArtist ? (
-                                <SongFilesLists />
-                            ) : (
-                                <div>
-                                    Choose an Artist.
-                                </div>
-                            )
-                        }
+            )
+        } else {
+            return (
+                <div className="flex -mx-4">
+                    <div className="w-1/4 mx-4">
+                        <ArtistList />
+                    </div>
+                    <div className="w-3/4 mx-4">
+                        <div className="bg-white shadow p-6">
+                            {
+                                this.props.chosenArtist ? (
+                                    <SongFilesLists />
+                                ) : (
+                                    <div>
+                                        Choose an Artist.
+                                    </div>
+                                )
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        }
     }
 
 }
