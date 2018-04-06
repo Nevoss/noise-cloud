@@ -57,7 +57,7 @@ class App extends Component {
                             <RouteWithLayout path="/music" component={Music} layout={PlayerLayout} mustAuth={true}/>
                             <RouteWithLayout path="/artists" component={Artists} layout={PlayerLayout} mustAuth={true}/>
                             <RouteWithLayout path="/albums" component={Albums} layout={PlayerLayout} mustAuth={true}/>
-                            <RouteWithLayout exact path="/" component={Home} layout={PlayerLayout} mustAuth={true}/>
+                            <RouteWithLayout exact path="/" component={Music} layout={PlayerLayout} mustAuth={true}/>
                         </Switch>
                     )
                 }

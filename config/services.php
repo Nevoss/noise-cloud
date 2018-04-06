@@ -34,10 +34,5 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
-    
-    'last-fm' => [
-        'key' => env('LASTFM_API_KEY'),
-        'base-url' => 'http://ws.audioscrobbler.com/2.0',
-    ]
 
 ];

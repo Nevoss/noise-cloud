@@ -50,10 +50,10 @@ class Navbar extends Component {
                                 className={'absolute list-reset bg-white py-2 pin-r shadow ' + (this.state.isUserSubMenuShown ? '' : 'hidden')}
                                 style={{ top: 75, width: 230 }}
                             >
-                                <li className="p-4 px-6 rounded">
-                                    <i className="icon-user2 text-grey-light mr-3"></i>
-                                    Profile
-                                </li>
+                                {/*<li className="p-4 px-6 rounded">*/}
+                                    {/*<i className="icon-user2 text-grey-light mr-3"></i>*/}
+                                    {/*Profile*/}
+                                {/*</li>*/}
                                 <li className="p-4 px-6 hover:bg-grey-lightest cursor-pointer rounded" onClick={this.props.logoutAction}>
                                     <i className="icon-log-out text-grey-light mr-3"></i>
                                     Logout
